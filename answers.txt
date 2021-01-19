@@ -3,7 +3,7 @@ SELECT c.Population, LifeExpectancy FROM country c WHERE NAME = "Argentina"; #2
 SELECT LifeExpectancy FROM country WHERE LifeExpectancy IS NOT NULL ORDER BY LifeExpectancy DESC LIMIT 1; #3
 SELECT ci.name FROM city ci JOIN country co ON ci.CountryCode = co.Code WHERE Code = (SELECT code FROM country WHERE name = 'Spain') and ID = Capital ; #4
 SELECT DISTINCT cl.Language FROM city ci JOIN country co ON ci.CountryCode = co.Code JOIN countrylanguage cl ON co.code = cl.CountryCode WHERE Region = "Southeast Asia"; #5
-SELECT * FROM city WHERE Name REGEXP '^F' LIMIT 25; #6
+SELECT name FROM city WHERE Name REGEXP '^F' LIMIT 25; #6
 SELECT COUNT(ci.name) FROM city ci JOIN country co ON ci.CountryCode = co.Code WHERE Code = (SELECT code FROM country WHERE name = 'CHINA'); #7
 SELECT name FROM country WHERE Population != 0 AND Population IS NOT NULL ORDER BY Population LIMIT 1 ; #8
 SELECT DISTINCT COUNT(NAME) FROM country; #9
