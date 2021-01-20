@@ -11,7 +11,7 @@ SELECT title FROM film WHERE special_features REGEXP 'Deleted Scenes';
 SELECT last_name FROM actor GROUP BY last_name HAVING COUNT(last_name) = 1 ORDER BY last_name DESC; #11
 SELECT last_name, COUNT(last_name) FROM actor GROUP BY last_name HAVING COUNT(last_name) >1 ORDER BY COUNT(last_name) DESC; #12
 SELECT a.first_name, a.last_name, fa.actor_ID, COUNT(fa.actor_ID) Number_of_Appearance FROM film_actor fa JOIN actor a ON fa.actor_id = a.actor_ID GROUP BY fa.actor_ID ORDER BY COUNT(fa.actor_ID) DESC LIMIT 1; #13
-SELECT f.title, DATE_ADD(rental_date, INTERVAL rental_duration DAY) DueDate FROM film f JOIN inventory i ON f.film_ID = i.film_ID JOIN rental r ON i.inventory_id = r.inventory_id WHERE r.return_date IS NULL AND f.title = 'ACADEMY DINOSAUR'; #14
+SELECT f.title, DATE_ADD(r.rental_date, INTERVAL f.rental_duration DAY) DueDate FROM film f JOIN inventory i ON f.film_ID = i.film_ID JOIN rental r ON i.inventory_id = r.inventory_id WHERE r.return_date IS NULL AND f.title = 'ACADEMY DINOSAUR'; #14
 SELECT AVG(length) FROM film_list; #15
 SELECT category, AVG(length) FROM film_list GROUP BY category; #16
 SELECT title, description FROM film_text WHERE description REGEXP 'robot'; #17
