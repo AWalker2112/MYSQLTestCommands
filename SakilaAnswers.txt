@@ -1,0 +1,25 @@
+SELECT first_name,last_name FROM actor ; #1
+SELECT last_name FROM actor WHERE first_name = 'John'; #2
+SELECT first_name,last_name FROM actor WHERE last_name = 'Neeson' ; #3
+SELECT first_name,last_name FROM actor where actor_id/10= floor(actor_id/10); #4
+SELECT description FROM film_list WHERE FID = 100; #5
+SELECT title FROM film_list WHERE rating = 'R'; #6
+SELECT title FROM film_list WHERE rating != 'R'; #7
+SELECT title FROM film_list ORDER BY length LIMIT 10; #8
+SELECT title FROM film_list WHERE length = ( SELECT max(length) FROM film_list) ; #9
+SELECT title FROM film WHERE special_features REGEXP 'Deleted Scenes';
+SELECT last_name FROM actor GROUP BY last_name HAVING COUNT(last_name) = 1 ORDER BY last_name DESC; #11
+SELECT last_name, COUNT(last_name) FROM actor GROUP BY last_name HAVING COUNT(last_name) >1 ORDER BY COUNT(last_name) DESC; #12
+SELECT a.first_name, a.last_name, fa.actor_ID, COUNT(fa.actor_ID) Number_of_Appearance FROM film_actor fa JOIN actor a ON fa.actor_id = a.actor_ID GROUP BY fa.actor_ID ORDER BY COUNT(fa.actor_ID) DESC LIMIT 1; #13
+SELECT f.title, DATE_ADD(rental_date, INTERVAL rental_duration DAY) DueDate FROM film f JOIN inventory i ON f.film_ID = i.film_ID JOIN rental r ON i.inventory_id = r.inventory_id WHERE r.return_date IS NULL AND f.title = 'ACADEMY DINOSAUR'; #14
+SELECT AVG(length) FROM film_list; #15
+SELECT category, AVG(length) FROM film_list GROUP BY category; #16
+SELECT title, description FROM film_text WHERE description REGEXP 'robot'; #17
+SELECT COUNT(title) FROM film WHERE release_year = '2010'; #18
+SELECT title FROM film_list WHERE category = "Horror"; #19
+SELECT name FROM staff_list WHERE SID=2; #20
+SELECT title FROM film_actor fa JOIN actor a ON fa.actor_ID = a.actor_ID JOIN film_list fl ON fa.film_id = fl.FID WHERE first_name = 'Fred' AND last_name = 'COSTNER'; #21
+SELECT DISTINCT COUNT(country) FROM country; #22
+SELECT name FROM language ORDER BY name DESC; #23
+SELECT first_name,last_name FROM actor WHERE last_name LIKE '%son' ORDER BY first_name; #24
+SELECT category, count(title) Films FROM film_list GROUP BY category ORDER BY count(title) DESC LIMIT 1; #25
